@@ -3,16 +3,17 @@ import { BookOpen, Headphones, Book, FileText, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
 interface MockTestPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
-const MockTestPage = ({ params }: MockTestPageProps) => {
+const MockTestPage = async ({ params }: MockTestPageProps) => {
+  const { id } = await params;
   // Giả lập dữ liệu bài thi dựa trên id
   const mockTest = {
-    id: params.id,
-    title: `TOEIC Practice Test ${params.id}`,
+    id: id,
+    title: `TOEIC Practice Test ${id}`,
     description: "Đề thi thử TOEIC đầy đủ 2 phần Listening và Reading",
     duration: "120 phút",
     questions: 200,
@@ -105,7 +106,7 @@ const MockTestPage = ({ params }: MockTestPageProps) => {
           </div>
 
           <div className="card-actions justify-end mt-8">
-            <Link href={`/mock-test/${params.id}/attempt`}>
+            <Link href={`/mock-test/${id}/attempt`}>
               <button className="btn btn-primary btn-lg">
                 Bắt đầu làm bài
               </button>

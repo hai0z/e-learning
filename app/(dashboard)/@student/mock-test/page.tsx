@@ -3,13 +3,13 @@ import { BookOpen, Headphones, Book, FileText } from "lucide-react";
 import Link from "next/link";
 
 interface MockTestPageProps {
-  searchParams: {
+  searchParams: Promise<{
     year: string;
-  };
+  }>;
 }
 
-const MockTestPage = ({ searchParams }: MockTestPageProps) => {
-  const year = searchParams.year ?? "2024";
+const MockTestPage = async ({ searchParams }: MockTestPageProps) => {
+  const { year } = await searchParams;
   const listYears = [2024, 2023, 2022, 2021, 2020];
   const mockTests = [
     {

@@ -3,13 +3,13 @@ import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
 interface AttemptPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
-const AttemptPage = ({ params }: AttemptPageProps) => {
-  const { id } = params;
+const AttemptPage = async ({ params }: AttemptPageProps) => {
+  const { id } = await params;
 
   return (
     <div className="container mx-auto p-6 max-w-7xl">

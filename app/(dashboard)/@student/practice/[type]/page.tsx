@@ -10,13 +10,13 @@ import {
 import Link from "next/link";
 
 interface ListPracticeProps {
-  params: {
+  params: Promise<{
     type: string;
-  };
+  }>;
 }
 
-const ListPractice = ({ params }: ListPracticeProps) => {
-  const { type } = params;
+const ListPractice = async ({ params }: ListPracticeProps) => {
+  const { type } = await params;
 
   const exercises = [
     {

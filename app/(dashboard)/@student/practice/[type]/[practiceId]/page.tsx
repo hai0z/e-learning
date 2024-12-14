@@ -3,14 +3,14 @@ import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
 interface PracticePageProps {
-  params: {
+  params: Promise<{
     practiceId: string;
     type: string;
-  };
+  }>;
 }
 
-const PracticePage = ({ params }: PracticePageProps) => {
-  const { practiceId, type } = params;
+const PracticePage = async ({ params }: PracticePageProps) => {
+  const { practiceId, type } = await params;
 
   return (
     <div className="container mx-auto p-6 max-w-7xl">

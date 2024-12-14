@@ -16,13 +16,13 @@ import {
 import PracticeTab from "./_components/Tab";
 import Link from "next/link";
 interface PracticePageProps {
-  searchParams: {
+  searchParams: Promise<{
     type: string;
-  };
+  }>;
 }
 
-const PracticePage = ({ searchParams }: PracticePageProps) => {
-  const type = searchParams.type;
+const PracticePage = async ({ searchParams }: PracticePageProps) => {
+  const { type } = await searchParams;
 
   const practiceCards = [
     {
