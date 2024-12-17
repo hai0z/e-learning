@@ -1,20 +1,8 @@
 import React from "react";
-import {
-  BookOpen,
-  Headphones,
-  Image,
-  Pencil,
-  Book,
-  Target,
-  MessageSquare,
-  Mic,
-  FileText,
-  Puzzle,
-  Brain,
-  Lightbulb,
-} from "lucide-react";
+
 import PracticeTab from "./_components/Tab";
 import Link from "next/link";
+import Image from "next/image";
 interface PracticePageProps {
   searchParams: Promise<{
     type: string;
@@ -28,9 +16,8 @@ const PracticePage = async ({ searchParams }: PracticePageProps) => {
     {
       id: 1,
       title: "Read and Select",
-      description: "Luyện đọc và chọn đáp án đúng",
       progress: 33,
-      icon: <Target size={48} className="text-primary" />,
+      image: require("@/public/images/1.svg"),
       type: "reading",
       totalExercises: 24,
       completedExercises: 8,
@@ -38,9 +25,8 @@ const PracticePage = async ({ searchParams }: PracticePageProps) => {
     {
       id: 2,
       title: "Fill in the Blanks",
-      description: "Điền từ vào chỗ trống",
       progress: 25,
-      icon: <Pencil size={48} className="text-primary" />,
+      image: require("@/public/images/2.svg"),
       type: "grammar",
       totalExercises: 32,
       completedExercises: 8,
@@ -48,9 +34,8 @@ const PracticePage = async ({ searchParams }: PracticePageProps) => {
     {
       id: 3,
       title: "Read and Complete",
-      description: "Đọc và hoàn thành đoạn văn",
       progress: 50,
-      icon: <Book size={48} className="text-primary" />,
+      image: require("@/public/images/3.svg"),
       type: "reading",
       totalExercises: 20,
       completedExercises: 10,
@@ -58,90 +43,90 @@ const PracticePage = async ({ searchParams }: PracticePageProps) => {
     {
       id: 4,
       title: "Listen and Type",
-      description: "Nghe và gõ lại nội dung",
       progress: 40,
-      icon: <Headphones size={48} className="text-primary" />,
+      image: require("@/public/images/4.svg"),
       type: "listening",
       totalExercises: 30,
       completedExercises: 12,
     },
     {
       id: 5,
-      title: "Write About the Photo",
-      description: "Viết về bức ảnh",
+      title: "Read Aloud",
       progress: 25,
-      icon: <Image size={48} className="text-primary" />,
-      type: "writing",
+      image: require("@/public/images/5.svg"),
+      type: "speaking",
       totalExercises: 16,
       completedExercises: 4,
     },
     {
       id: 6,
-      title: "Interactive Reading",
-      description: "Đọc hiểu tương tác",
+      title: "Write About the Photo",
       progress: 33,
-      icon: <BookOpen size={48} className="text-primary" />,
+      image: require("@/public/images/6.svg"),
       type: "reading",
       totalExercises: 24,
       completedExercises: 8,
     },
     {
       id: 7,
-      title: "Conversation Practice",
-      description: "Luyện tập hội thoại",
+      title: "Speak About the Photo",
       progress: 60,
-      icon: <MessageSquare size={48} className="text-primary" />,
+      image: require("@/public/images/7.svg"),
       type: "speaking",
       totalExercises: 20,
       completedExercises: 12,
     },
     {
       id: 8,
-      title: "Pronunciation Drill",
-      description: "Luyện phát âm chuẩn",
+      title: "Read, Then Speak",
       progress: 45,
-      icon: <Mic size={48} className="text-primary" />,
+      image: require("@/public/images/8.svg"),
       type: "speaking",
       totalExercises: 40,
       completedExercises: 18,
     },
     {
       id: 9,
-      title: "Essay Writing",
-      description: "Viết luận theo chủ đề",
+      title: "Listen, Then Speak",
       progress: 15,
-      icon: <FileText size={48} className="text-primary" />,
-      type: "writing",
+      image: require("@/public/images/9.svg"),
+      type: "listening",
       totalExercises: 20,
       completedExercises: 3,
     },
     {
       id: 10,
-      title: "Word Puzzles",
-      description: "Giải ô chữ tiếng Anh",
+      title: "Interactive Reading",
       progress: 70,
-      icon: <Puzzle size={48} className="text-primary" />,
-      type: "vocabulary",
+      image: require("@/public/images/10.svg"),
+      type: "reading",
       totalExercises: 30,
       completedExercises: 21,
     },
     {
       id: 11,
-      title: "Grammar Challenge",
-      description: "Thử thách ngữ pháp",
+      title: "Interactive Listening",
       progress: 55,
-      icon: <Brain size={48} className="text-primary" />,
-      type: "grammar",
+      image: require("@/public/images/11.svg"),
+      type: "listening",
       totalExercises: 40,
       completedExercises: 22,
     },
     {
       id: 12,
-      title: "Vocabulary Builder",
-      description: "Xây dựng vốn từ vựng",
+      title: "Writing Sample",
       progress: 65,
-      icon: <Lightbulb size={48} className="text-primary" />,
-      type: "vocabulary",
+      image: require("@/public/images/12.svg"),
+      type: "writing",
+      totalExercises: 50,
+      completedExercises: 32,
+    },
+    {
+      id: 13,
+      title: "Speaking Sample",
+      progress: 65,
+      image: require("@/public/images/13.svg"),
+      type: "speaking",
       totalExercises: 50,
       completedExercises: 32,
     },
@@ -152,7 +137,7 @@ const PracticePage = async ({ searchParams }: PracticePageProps) => {
     : practiceCards;
 
   return (
-    <div className="container mx-auto px-6">
+    <div className="container mx-auto px-6 max-w-7xl">
       <div className="mb-8">
         <div className="mb-8">
           <h2 className="text-3xl font-bold mb-3">Luyện tập nhanh</h2>
@@ -166,35 +151,31 @@ const PracticePage = async ({ searchParams }: PracticePageProps) => {
         <PracticeTab type={type} />
 
         {/* Practice cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2  gap-8">
           {filteredCards.map((card) => (
             <Link
               key={card.id}
               href={`/practice/${card.type}`}
-              className="card card-side card-bordered card-compact bg-base-100 shadow-xl cursor-pointer hover:shadow-2xl transition-shadow"
+              className="card card-side border-[2px] border-base-200 card-compact bg-base-100 cursor-pointer transition-shadow py-8"
             >
               <figure className="w-48">
-                <div className="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                  {card.icon}
+                <div className="w-full h-full  flex items-center justify-center">
+                  <Image src={card.image} alt={card.title} />
                 </div>
               </figure>
               <div className="card-body">
                 <h3 className="card-title text-xl">{card.title}</h3>
-                <p className="text-base-content/70">{card.description}</p>
-                <div className="mt-4">
-                  <div className="flex justify-between text-sm mb-1">
-                    <span>Tiến độ</span>
-                    <span className="text-primary">{card.progress}%</span>
-                  </div>
-                  <div className="w-full bg-base-200 rounded-full h-3">
+                <div className="mt-4 flex items-center justify-between">
+                  <div className="flex-1 w-full bg-base-200 rounded-full h-3 flex items-center justify-between">
                     <div
                       className="bg-primary h-3 rounded-full transition-all duration-500"
                       style={{ width: `${card.progress}%` }}
                     ></div>
                   </div>
-                  <div className="text-sm text-base-content/70 mt-2">
-                    Hoàn thành {card.completedExercises}/{card.totalExercises}{" "}
-                    bài tập
+                  <div className="flex items-center justify-center flex-[0.2]">
+                    <span className=" text-base-content/70 font-semibold">
+                      0 / {card.totalExercises}
+                    </span>
                   </div>
                 </div>
               </div>

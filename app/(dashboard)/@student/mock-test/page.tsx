@@ -9,8 +9,14 @@ interface MockTestPageProps {
 }
 
 const MockTestPage = async ({ searchParams }: MockTestPageProps) => {
-  const { year } = await searchParams;
+  let { year } = await searchParams;
+
+  if (!year) {
+    year = "2024";
+  }
   const listYears = [2024, 2023, 2022, 2021, 2020];
+
+  console.log(year);
   const mockTests = [
     {
       id: 1,
@@ -51,7 +57,7 @@ const MockTestPage = async ({ searchParams }: MockTestPageProps) => {
   ];
 
   return (
-    <div className="container mx-auto px-6">
+    <div className="container mx-auto px-6 max-w-7xl">
       <div className="mb-8">
         <div className="mb-8">
           <h2 className="text-3xl font-bold mb-3">Thi thử TOEIC</h2>
@@ -65,18 +71,20 @@ const MockTestPage = async ({ searchParams }: MockTestPageProps) => {
             <Link
               key={y}
               href={y ? `/mock-test?year=${y}` : "/mock-test"}
-              className={`btn ${+year === y ? "btn-primary" : "btn-ghost"}`}
+              className={`border-[1px]  px-6 py-3 rounded-md ${
+                y === +year ? "bg-blue-100  border-blue-400" : "bg-base-100"
+              }`}
             >
               {y}
             </Link>
           ))}
         </div>
         {/* Mock test cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2  gap-4">
           {mockTests.map((test) => (
             <div
               key={test.id}
-              className="card card-side card-bordered card-compact bg-base-100 shadow-xl cursor-pointer hover:shadow-2xl transition-shadow"
+              className="card card-side card-bordered card-compact bg-base-100  transition-shadow"
             >
               <figure className="w-48">
                 <div className="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">

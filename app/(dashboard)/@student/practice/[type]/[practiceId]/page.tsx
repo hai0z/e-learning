@@ -13,7 +13,7 @@ const PracticePage = async ({ params }: PracticePageProps) => {
   const { practiceId, type } = await params;
 
   return (
-    <div className="container mx-auto p-6 max-w-7xl">
+    <div className="container mx-auto p-6 ">
       <div className="mb-8">
         <Link href={`/practice/${type}`} className="btn btn-ghost gap-2 mb-4">
           <ArrowLeft size={20} />
@@ -26,6 +26,65 @@ const PracticePage = async ({ params }: PracticePageProps) => {
       </div>
 
       <div className="flex gap-6">
+        {/* Sidebar */}
+        <div className="w-72">
+          <div className="card bg-base-100 border border-base-300">
+            <div className="card-body">
+              <div className="text-xl font-medium mb-4">
+                Thời gian còn lại:
+                <div className="text-2xl font-bold">119:53</div>
+              </div>
+
+              <button className="btn btn-outline w-full mb-2">NỘP BÀI</button>
+              <div className="text-red-500 mb-4">
+                <a href="#" className="text-sm">
+                  Khôi phục/lưu bài làm ›
+                </a>
+              </div>
+
+              <div className="text-amber-500 text-sm mb-4">
+                Chú ý: bạn có thể click vào số thứ tự câu hỏi trong bài để đánh
+                dấu review
+              </div>
+
+              <div className="space-y-4">
+                <div>
+                  <h3 className="font-medium mb-2">Part 1</h3>
+                  <div className="grid grid-cols-5 gap-2">
+                    {Array.from({ length: 6 }).map((_, i) => (
+                      <button key={i} className="btn btn-sm btn-outline">
+                        {i + 1}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="font-medium mb-2">Part 2</h3>
+                  <div className="grid grid-cols-5 gap-2">
+                    {Array.from({ length: 25 }).map((_, i) => (
+                      <button key={i} className="btn btn-sm btn-outline">
+                        {i + 7}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="font-medium mb-2">Part 3</h3>
+                  <div className="grid grid-cols-5 gap-2">
+                    {Array.from({ length: 30 }).map((_, i) => (
+                      <button key={i} className="btn btn-sm btn-outline">
+                        {i + 32}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Main content */}
         <div className="flex-1">
           <div className="card bg-base-100 border border-base-300">
@@ -102,27 +161,6 @@ const PracticePage = async ({ params }: PracticePageProps) => {
                   Câu trước
                 </button>
                 <button className="btn btn-primary">Câu tiếp theo</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Sidebar */}
-        <div className="w-72">
-          <div className="card bg-base-100 border border-base-300">
-            <div className="card-body">
-              <h3 className="font-medium mb-4">Danh sách câu hỏi</h3>
-              <div className="grid grid-cols-5 gap-2">
-                {Array.from({ length: 15 }).map((_, i) => (
-                  <button
-                    key={i}
-                    className={`btn btn-sm ${
-                      i === 0 ? "btn-primary" : "btn-outline"
-                    }`}
-                  >
-                    {i + 1}
-                  </button>
-                ))}
               </div>
             </div>
           </div>
