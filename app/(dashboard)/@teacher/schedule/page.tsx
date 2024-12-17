@@ -53,15 +53,15 @@ const SchedulePage = () => {
   ];
 
   return (
-    <div className="container mx-auto px-6">
-      <div className="card card-bordered ">
-        <div className="card-body">
-          <div className="flex items-center justify-between mb-8">
+    <div className="container mx-auto px-3 md:px-6">
+      <div className="card card-bordered">
+        <div className="card-body p-4 md:p-6">
+          <div className="flex items-center justify-between mb-4 md:mb-8">
             <div>
-              <h2 className="card-title text-3xl text-primary font-bold">
+              <h2 className="card-title text-xl md:text-2xl lg:text-3xl text-primary font-bold font-geist-sans">
                 Lịch giảng dạy
               </h2>
-              <p className="text-base-content/70 mt-2">
+              <p className="text-sm md:text-base text-base-content/70 mt-1 md:mt-2 font-geist-sans">
                 Quản lý lịch dạy và thời khóa biểu các lớp học
               </p>
             </div>
@@ -77,29 +77,16 @@ const SchedulePage = () => {
               right: "timeGridWeek",
             }}
             eventContent={(eventInfo) => (
-              <div className="p-3 rounded-lg  hover:scale-[1.02] transition-all duration-200 ">
-                <div className="flex items-center gap-3">
-                  <div className="avatar">
-                    <div className="w-8 h-8 rounded-full ring ring-white">
-                      <img
-                        src={
-                          "https://api.dicebear.com/7.x/avataaars/svg?seed=Felix"
-                        }
-                        alt={eventInfo.event.extendedProps.teacher}
-                        width={32}
-                        height={32}
-                        className="rounded-full"
-                      />
-                    </div>
-                  </div>
+              <div className="p-2 md:p-3 rounded-lg hover:scale-[1.02] transition-all duration-200">
+                <div className="flex items-center gap-2 md:gap-3">
                   <div>
-                    <div className="font-medium text-white text-sm">
+                    <div className="font-medium text-white text-xs font-geist-sans">
                       {eventInfo.event.title}
                     </div>
-                    <div className="text-white/90 text-xs">
+                    <div className="text-white/90 text-[10px] md:text-xs font-geist-sans">
                       {eventInfo.event.extendedProps.teacher}
                     </div>
-                    <div className="text-white/90 text-xs mt-1">
+                    <div className="text-white/90 text-[10px] md:text-xs mt-0.5 md:mt-1 font-geist-mono">
                       {eventInfo.event.startStr.slice(11, 16)} -{" "}
                       {eventInfo.event.endStr.slice(11, 16)}
                     </div>

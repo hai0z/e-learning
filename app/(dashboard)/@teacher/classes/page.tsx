@@ -57,29 +57,27 @@ const ClassesPage = () => {
 
   return (
     <div className="container mx-auto px-6">
-      <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-8">
+      <div className="flex flex-row justify-between items-center mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-center sm:text-left">
-            Lớp học của tôi
-          </h1>
-          <p className="text-base-content/70 mt-1">
+          <h1 className="text-3xl font-bold text-left">Lớp học của tôi</h1>
+          <p className="text-base text-base-content/70 mt-1">
             Quản lý và giảng dạy các lớp học của bạn
           </p>
         </div>
-        <button className="btn btn-primary w-full sm:w-auto gap-2">
+        <button className="btn btn-primary gap-2">
           <Plus size={20} />
           Tạo lớp học mới
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
         {classes.map((classItem) => (
           <div
             key={classItem.id}
-            className="card bg-base-100 shadow-md transition-all duration-300 overflow-hidden group"
+            className="card bg-base-100 shadow-md overflow-hidden transition-all duration-300 group"
           >
             <div
-              className="h-48 relative"
+              className="relative h-48"
               style={{
                 backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url(${classItem.coverImage})`,
                 backgroundSize: "cover",
@@ -87,16 +85,16 @@ const ClassesPage = () => {
               }}
             >
               <div className="absolute top-6 left-6 right-16">
-                <h2 className="text-white text-2xl font-bold mb-2 truncate">
+                <h2 className="text-2xl font-bold text-white truncate mb-2">
                   {classItem.name}
                 </h2>
-                <p className="text-white/80 text-base">
+                <p className="text-base text-white/80">
                   Phòng: {classItem.room}
                 </p>
               </div>
               <div className="absolute top-4 right-4">
                 <div className="dropdown dropdown-end">
-                  <button className="btn btn-ghost btn-md btn-circle text-white">
+                  <button className="btn btn-ghost btn-circle text-white">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -120,29 +118,29 @@ const ClassesPage = () => {
                       <a className="text-base py-3">Chỉnh sửa</a>
                     </li>
                     <li>
-                      <a className="text-base py-3 text-error">Xóa lớp học</a>
+                      <a className="text-base text-error py-3">Xóa lớp học</a>
                     </li>
                   </ul>
                 </div>
               </div>
             </div>
 
-            <div className="p-6 flex justify-between items-center border-t">
+            <div className="flex items-center justify-between p-6 border-t">
               <div className="flex items-center gap-6">
                 <div className="flex items-center gap-3 text-base-content/70">
-                  <Users size={22} />
+                  <Users className="w-[22px] h-[22px]" />
                   <span className="text-base">{classItem.students}</span>
                 </div>
                 <div className="flex items-center gap-3 text-base-content/70">
-                  <Folder size={22} />
+                  <Folder className="w-[22px] h-[22px]" />
                   <span className="text-base">5</span>
                 </div>
               </div>
               <Link
                 href={`/classes/${classItem.id}`}
-                className="btn btn-ghost btn-md gap-2"
+                className="btn btn-ghost gap-2"
               >
-                <ArrowUpRight size={22} />
+                <ArrowUpRight className="w-[22px] h-[22px]" />
                 <span className="text-base">Quản lý</span>
               </Link>
             </div>

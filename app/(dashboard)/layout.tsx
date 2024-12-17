@@ -1,6 +1,6 @@
 import React from "react";
 const checkUserRole = () => {
-  return "teacher";
+  return "student";
 };
 interface DashboardLayoutProps {
   student: React.ReactNode;
