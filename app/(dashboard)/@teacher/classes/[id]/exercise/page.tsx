@@ -53,7 +53,7 @@ const ExercisePage = ({ params }: ExercisePageProps) => {
             <h2 className="card-title text-2xl">Bài tập</h2>
             <Link
               href={`/classes/${params.id}/exercise/create`}
-              className="btn btn-primary"
+              className="btn btn-outline btn-primary"
             >
               <Plus size={20} />
               Tạo bài tập mới

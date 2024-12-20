@@ -22,11 +22,14 @@ const Tab = ({ id }: Props) => {
           href={`/classes/${id}`}
           role="tab"
           className={`tab ${
-            isActive(`/classes/${id}`) ? "tab-active" : ""
+            isActive(`/classes/${id}`) ||
+            pathname.includes(`/classes/${id}/chapter`)
+              ? "tab-active"
+              : ""
           } tab-lifted flex items-center gap-2 px-6 font-medium hover:bg-base-200 transition-colors`}
         >
           <FileText size={18} className="text-primary" />
-          Bảng tin
+         Chương trình học
         </Link>
         <Link
           href={`/classes/${id}/exercise`}

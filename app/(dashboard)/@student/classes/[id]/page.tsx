@@ -1,205 +1,109 @@
-"use client";
-import React, { useState } from "react";
-import {
-  Folder,
-  Users,
-  FileText,
-  MessageSquare,
-  Settings,
-  Send,
-  MoreVertical,
-} from "lucide-react";
+import React from "react";
 import Link from "next/link";
 
-const ClassesDetailPage = () => {
-  const [showAnnouncement, setShowAnnouncement] = useState(false);
-  const [announcement, setAnnouncement] = useState("");
+interface Chapter {
+  id: number;
+  title: string;
+  type: 'Phát âm' | 'Từ đồng nghĩa' | 'Từ loại';
+  description: string;
+}
 
-  const classData = {
+const chapters: Chapter[] = [
+  {
     id: 1,
-    name: "Tiếng Anh cơ bản",
-    teacher: "Nguyễn Văn A",
-    coverImage: "https://gstatic.com/classroom/themes/img_read.jpg",
-    topics: "Animals",
-    room: "Cs123",
-    students: 24,
-    description: "Khóa học tiếng Anh cơ bản dành cho người mới bắt đầu",
-  };
+    title: 'Chương 1: Phát âm',
+    type: 'Phát âm',
+    description: 'Hôm nay, chúng ta cùng tìm hiểu chi tiết bằng phiên âm tiếng Anh IPA địa chỉ và cách phát âm 44 âm chuẩn quốc tế'
+  },
+  {
+    id: 2,
+    title: 'Chương 2: Từ đồng nghĩa',
+    type: 'Từ đồng nghĩa',
+    description: 'Hôm nay, chúng ta cùng tìm hiểu chi tiết về từ đồng nghĩa trong tiếng Anh.'
+  },
+  {
+    id: 3,
+    title: 'Chương 3: Từ loại',
+    type: 'Từ loại',
+    description: 'Hôm nay, chúng ta cùng tìm hiểu chi tiết về từ loại trong tiếng Anh.'
+  },
+  {
+    id: 5,
+    title: 'Chương 5: Phát âm',
+    type: 'Phát âm',
+    description: 'Hôm nay, chúng ta cùng tìm hiểu chi tiết bằng phiên âm tiếng Anh IPA địa chỉ và cách phát âm 44 âm chuẩn quốc tế'
+  },
+  {
+    id: 6,
+    title: 'Chương 6: Từ đồng nghĩa',
+    type: 'Từ đồng nghĩa',
+    description: 'Hôm nay, chúng ta cùng tìm hiểu chi tiết về từ đồng nghĩa trong tiếng Anh.'
+  }
+];
+interface ClassesDetailPageProps {
+  params: Promise<{
+    id: string;
+  }>;
+}
+const ClassesDetailPage = async({params}: ClassesDetailPageProps) => {
+  
+  const { id } = await params;
+
 
   return (
     <div>
-      <div className="container mx-auto max-w-5xl">
-        {/* Header */}
-        <div
-          className="h-72 relative mb-16 mt-16 -z-1 container rounded-lg overflow-hidden"
-          style={{
-            backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url(${classData.coverImage})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        >
-          <div className="absolute bottom-6 left-6">
-            <h1 className="text-white text-3xl font-bold mb-2">
-              {classData.name}
-            </h1>
-            <p className="text-white/90 text-lg">
-              {classData.teacher} • {classData.room}
+      <div className="container mx-auto max-w-7xl">
+      <div className="mt-16">
+      <div className="p-4">
+      {/* Welcome Message */}
+      <div className="hero bg-gradient-to-r from-primary/10 to-secondary/10 rounded-box mb-6 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary"></div>
+        <div className="hero-content flex-col lg:flex-row py-6 gap-6">
+          <div className="avatar placeholder relative">
+            <div className="bg-primary text-primary-content rounded-full w-20 h-20 ring ring-primary ring-offset-base-100 ring-offset-2">
+              <span className="text-3xl font-bold">1131</span>
+            </div>
+          </div>
+          <div>
+            <div className="flex items-center gap-2 mb-2">
+              <h1 className="text-2xl font-bold">Chào mừng tới lớp học</h1>
+              <div className="badge badge-primary">2023-2024</div>
+            </div>
+            <p className="py-2 text-base-content/70 flex items-center gap-2">
+              <span>Cùng bắt đầu hành trình học tập của bạn</span>
             </p>
-          </div>
-        </div>
-
-        {/* Main Content */}
-        <div className="container mx-auto">
-          <div className="grid grid-cols-12 gap-6">
-            {/* Left Column */}
-            <div className="col-span-12 lg:col-span-3">
-              <div className="card bg-base-100 card-bordered">
-                <div className="card-body">
-                  <h2 className="card-title mb-4">Thông tin lớp học</h2>
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <Users size={20} className="text-base-content/70" />
-                      <span>{classData.students} học viên</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <Folder size={20} className="text-base-content/70" />
-                      <span>5 tài liệu</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <FileText size={20} className="text-base-content/70" />
-                      <span>3 bài tập</span>
-                    </div>
-                  </div>
-                </div>
+            <div className="flex gap-2 mt-2">
+              <div className="badge badge-outline gap-2">
+                <div className="w-2 h-2 rounded-full bg-success"></div>
+                Online
               </div>
-            </div>
-
-            {/* Right Column */}
-            <div className="col-span-12 lg:col-span-9">
-              {/* Announcement */}
-              <div className="card bg-base-100 card-bordered card-compact">
-                <div className="card-body">
-                  <div className="flex items-center gap-4">
-                    <img
-                      className="avatar avatar-xl rounded-full h-12 w-12"
-                      src={classData.coverImage}
-                      alt=""
-                    />
-                    <div className="w-full">
-                      {!showAnnouncement ? (
-                        <button
-                          className="w-full text-left text-base-content/70 hover:bg-base-200 p-3 rounded-lg"
-                          onClick={() => setShowAnnouncement(true)}
-                        >
-                          Bạn muốn chia sẻ điều gì với lớp học không? 😊
-                        </button>
-                      ) : (
-                        <>
-                          <textarea
-                            value={announcement}
-                            onChange={(e) => setAnnouncement(e.target.value)}
-                            className="textarea textarea-bordered w-full mt-4"
-                            placeholder="Hãy chia sẻ suy nghĩ của bạn với mọi người..."
-                            rows={4}
-                            autoFocus
-                          />
-                          <div className="flex justify-end gap-2 mt-4">
-                            <button
-                              className="btn btn-ghost"
-                              onClick={() => {
-                                setShowAnnouncement(false);
-                                setAnnouncement("");
-                              }}
-                            >
-                              Để sau
-                            </button>
-                            <button className="btn btn-primary">
-                              Chia sẻ ngay
-                            </button>
-                          </div>
-                        </>
-                      )}
-                    </div>
-                  </div>
-                </div>
+              <div className="badge badge-outline gap-2">
+                <div className="w-2 h-2 rounded-full bg-warning"></div>
+                5 Chapters
               </div>
-
-              {/* post */}
-              {[1, 2, 3].map((post) => (
-                <div
-                  key={post}
-                  className="card bg-base-100 card-bordered hover:shadow-md transition-all duration-300 mt-4"
-                >
-                  <div className="card-body p-6">
-                    <div className="flex items-start gap-4">
-                      <img
-                        src="https://api.dicebear.com/7.x/avataaars/svg?seed=Lucy"
-                        alt=""
-                        className="avatar rounded-full w-12 h-12 ring-2 ring-base-200"
-                      />
-                      <div className="flex-1">
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <h3 className="text-lg font-bold hover:text-primary transition-colors">
-                              Nguyễn Văn A
-                            </h3>
-                            <p className="text-sm text-base-content/60">
-                              Hôm nay lúc 9:00
-                            </p>
-                          </div>
-                          <div className="dropdown dropdown-end">
-                            <label
-                              tabIndex={0}
-                              className="btn btn-ghost btn-sm btn-circle"
-                            >
-                              <MoreVertical size={18} />
-                            </label>
-                            <ul
-                              tabIndex={0}
-                              className="dropdown-content menu p-2 shadow-lg bg-base-100 rounded-box w-52"
-                            >
-                              <li>
-                                <a className="text-base py-2">Chỉnh sửa</a>
-                              </li>
-                              <li>
-                                <a className="text-base py-2 text-error">Xóa</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-
-                        <p className="mt-4 text-base text-base-content/80 leading-relaxed">
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. Quisquam, quos.
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="divider my-4"></div>
-
-                    <div className="flex items-center gap-3">
-                      <img
-                        src="https://api.dicebear.com/7.x/avataaars/svg?seed=Lucy"
-                        alt=""
-                        className="avatar rounded-full w-10 h-10 ring-2 ring-base-200"
-                      />
-                      <div className="flex-1 flex gap-2">
-                        <input
-                          type="text"
-                          placeholder="Thêm nhận xét trong lớp học..."
-                          className="input input-bordered w-full focus:outline-none focus:border-primary"
-                        />
-                        <button className="btn btn-ghost btn-square">
-                          <Send size={18} />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Chapter Section Title */}
+      <h2 className="text-lg font-medium mb-4">Các chương trình có trong lớp học</h2>
+
+      {/* Chapters Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {chapters.map((chapter) => (
+          <Link key={chapter.id} href={`/classes/${id}/chapter/${chapter.id}`} className="card bg-base-100 card-bordered">
+            <div className="card-body">
+              <h3 className="card-title text-primary">{chapter.title}</h3>
+              <div className="divider"></div>
+              <p className="text-sm text-base-content/70">{chapter.description}</p>
+            
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
+      </div>
       </div>
     </div>
   );
